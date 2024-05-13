@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userControllers = require('../controllers/users.contoller');
+const userControllers = require('../controllers/users.controller');
 const verifyToken = require('../moddlewares/verifyToken');
 
 // get all users
