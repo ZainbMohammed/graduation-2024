@@ -46,7 +46,6 @@
     </div>
   </header><!-- End Header -->
 
-
   <!-- Login section -->
   <section >
     <div class="wrapper">
@@ -55,30 +54,25 @@
                 <div class="col-md-6 right-side">
                     <div class="input-box">
                        <h3> مرحبا بعودتك سجل الآن و استمتع بالتجربة</h3>
-                       <div class="input-field">
-                        <label for="userName" class="form-label">اسم المستخدم</label>
-                        <input type="text" id="userName" class="form-control">
+                       <form id="loginForm" action="/login" method="POST">
+                        <div class="input-field">
+                          <label for="email" class="form-label">ايميل</label>
+                          <input type="text" id="email" class="form-control">
                         </div> 
-                        <!-- <br> -->
                         <div class="input-field">
                             <label for="password" class="form-label">كلمةالسر</label>
                             <input type="password" id="password" class="form-control" aria-describedby="passwordHelpBlock">
                         </div>  
                        <input type="submit" value="تسجيل الدخول" class="btn">
+                      </form>
                        <div class="signin text-center">
                         <span>لا تملك حساب ؟<a href="./register.html">انشاء حساب</a></span>
                        </div>
                     </div>  
                 </div>
-                <div class="col-md-6 image-side">
-                           
+                <div class="col-md-6 image-side">      
                     <!-------------      image     ------------->
-                    
-                    <img  src="../assets/img/register/register.png" alt="">
-                    <!-- <div class="text">
-                        <p>Join the community of developers <i>- ludiflex</i></p>
-                    </div> -->
-                    
+                    <img  src="../assets/img/register/register.png" alt="">   
                 </div>
             </div>
         </div>
@@ -87,6 +81,47 @@
   <!-- End Login section -->
 
   <!-- Template Main JS File -->
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        // Get input field values
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Construct data object
+        const data = {
+            email: email,
+            password: password
+        };
+
+        try {
+            // Make POST request to API endpoint
+            const response = await fetch('http://localhost:3000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const responseData = await response.json();
+
+            // Check response status
+            if (response.ok) {
+                // Login successful, handle accordingly (e.g., redirect to dashboard)
+                console.log('Login successful:', responseData);
+            } else {
+                // Login failed, handle error (e.g., display error message)
+                console.log('Login failed:', responseData);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle network errors or other issues
+        }
+    });
+</script>
+
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
