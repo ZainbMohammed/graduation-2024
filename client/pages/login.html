@@ -114,6 +114,8 @@
             } else {
                 // Login failed, handle error (e.g., display error message)
                 console.log('Login failed:', responseData);
+                alert('Login failed!' + responseData['Message']); // Example: Show alert message
+
             }
         } catch (error) {
             console.error('Error:', error);

@@ -19,6 +19,9 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="../assets/css/registerStyle.css" rel="stylesheet">
+  <!-- Include toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -118,6 +121,7 @@
   </section>
   <!-- End Register section -->
 
+  <!-- Include toastr JS -->
   <!-- Template Main JS File -->
   <script>
 
@@ -125,6 +129,13 @@
 document.getElementById('signupForm').addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent default form submission
 
+    // Initialize toastr
+// toastr.options = {
+//     closeButton: true,
+//     progressBar: true,
+//     positionClass: 'toast-top-right',
+//     timeOut: 3000 // Duration in milliseconds
+// };
     // Get input field values
     const userName = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -165,6 +176,12 @@ document.getElementById('signupForm').addEventListener('submit', async function 
         if (response.ok) {
             // Registration successful, handle accordingly (e.g., show success message, redirect to login page)
             console.log('Registration successful:', responseData);
+            // Registration successful
+            // toastr.success('Registration successful! Redirecting to login page...');
+            // setTimeout(() => {
+            //     window.location.href = './login.html'; // Redirect to login page after successful registration
+            // }, 3000); // Redirect after 3 seconds
+
             alert('Registration successful!'); // Example: Show alert message
             window.location.href = './login.html'; // Redirect to login page after successful registration
         } else {
@@ -179,6 +196,8 @@ document.getElementById('signupForm').addEventListener('submit', async function 
 });
 
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
   <script src="../assets/js/main.js"></script>
 </body>
 
