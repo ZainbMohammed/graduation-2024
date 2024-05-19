@@ -9,7 +9,18 @@ const getAllUsers = async (req,res)=>{
     const users = await User.find({},{"__v":false});
     res.json({status: httpStatusText.SUCCESS ,data: {users}});
 }
-
+const getOnlyUser = async (req,res)=>{
+    try{
+        const userId = req.params.id;
+        const user = await User.findById(userId);
+        if(!user){
+            res.status(404).json({status: httpStatusText.FAIL ,Message: 'user not found'});
+        }
+        return res.json({status: httpStatusText.SUCCESS ,data: {user}});
+    }catch(error){
+        return res.status(400).json({status: httpStatusText.ERROR ,Message: error.Message});
+    }
+}
 
 const register = async(req,res)=>{
     
@@ -79,10 +90,21 @@ const login = async (req,res)=>{
         return res.status(500).json({ status: httpStatusText.ERROR, Message: "Internal Server Error" });
     }
 }
+const updateUser = async (req,res)=>{
+    const userId = req.params.id;
+    try{
+        const updatedUser = await User.updateOne({_id: userId}, {$set: {...req.body}});
+        return res.status(200).json({status: httpStatusText.SUCCESS, data: {user:updatedUser}});
 
+    }catch(error){
+        return res.status(400).json({status: httpStatusText.ERROR, Message: error.Message});
+    }
+}
 
 module.exports = {
     getAllUsers,
+    getOnlyUser,
     register,
-    login
+    login,
+    updateUser,
 }

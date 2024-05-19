@@ -15,5 +15,11 @@ router.route('/register')
 // login
 router.route('/login')
         .post(userControllers.login)
-      
+
+router.route('/:id')
+        .get(userControllers.getOnlyUser)
+        .patch(userControllers.updateUser)
+        
+        
+        
 module.exports = router;
