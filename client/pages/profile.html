@@ -77,7 +77,7 @@
             </li>
             <hr class="dropdown-divider">
             <li>
-                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <a id="logoutButton" class="dropdown-item d-flex align-items-center" href="./login.html">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>تسجيل خروج</span>
                 </a>
@@ -266,5 +266,38 @@
 
     <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <script>
+    document.getElementById('logoutButton').addEventListener('click', async function() {
+      console.log(localStorage.getItem('authToken'));
+        try {
+            // Assuming your backend has a logout endpoint
+            const response = await fetch('http://localhost:3000/api/users/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            });
+
+            if (response.ok) {
+                // Clear authentication data
+                localStorage.removeItem('authToken');
+
+                // Display success message
+                console.log('Logout successful! Redirecting to login page...');
+
+                // Redirect to login page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 10000);
+            } else {
+                console.error('Logout failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('An error occurred. Please try again later.');
+        }
+    });
+    
+  </script>
 </body>
 </html>

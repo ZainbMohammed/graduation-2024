@@ -111,6 +111,7 @@
             if (response.ok) {
                 // Login successful, handle accordingly (e.g., redirect to dashboard)
                 console.log('Login successful:', responseData);
+                localStorage.setItem('authToken', responseData.data.token);
                 window.location.href = './profile.html';
             } else {
                 // Login failed, handle error (e.g., display error message)
