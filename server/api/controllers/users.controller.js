@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs")
 // const jwt = require('jsonwebtoken');
 const httpStatusText = require('../utils/httpStatusText')
 const generateJWT = require('../utils/generateJWT');
+const nodemailer = require('nodemailer');
+
 
 const getAllUsers = async (req,res)=>{
     // get all courses from mongodb using Course model
@@ -100,11 +102,68 @@ const updateUser = async (req,res)=>{
         return res.status(400).json({status: httpStatusText.ERROR, Message: error.Message});
     }
 }
+const logout = async (req, res) => {
+    try {
+        // Invalidate token logic if you maintain a token blacklist
+        // For now, just send a success response
+        return res.status(200).json({ status: httpStatusText.SUCCESS, Message: "Logout successful" });
+    } catch (error) {
+        console.error('Logout Error:', error);
+        return res.status(500).json({ status: httpStatusText.ERROR, Message: "Internal Server Error" });
+    }
+};
 
+
+const foregetPassword = async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ status: httpStatusText.FAIL, message: 'User not found' });
+        }
+
+        // Generate a reset token
+        const token = crypto.randomBytes(20).toString('hex');
+        
+        // Set token and expiration on the user object
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        await user.save();
+
+        // Send the email
+        const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            },
+        });
+
+        const mailOptions = {
+            to: user.email,
+            from: 'passwordreset@demo.com',
+            subject: 'Password Reset',
+            text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
+                Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n
+                http://localhost:3000/reset-password/${token}\n\n
+                If you did not request this, please ignore this email and your password will remain unchanged.\n`,
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.status(200).json({ status: 'success', message: 'Password reset email sent' });
+    } catch (error) {
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+}
 module.exports = {
     getAllUsers,
     getOnlyUser,
     register,
     login,
     updateUser,
+    logout,
+    foregetPassword,
 }

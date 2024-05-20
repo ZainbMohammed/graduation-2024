@@ -16,10 +16,14 @@ router.route('/register')
 router.route('/login')
         .post(userControllers.login)
 
+// logout
+router.route('/logout')
+        .post(userControllers.logout)
+
 router.route('/:id')
         .get(userControllers.getOnlyUser)
         .patch(userControllers.updateUser)
         
-        
+router.route('/forgot-password',userControllers.foregetPassword)   
         
 module.exports = router;
