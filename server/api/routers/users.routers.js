@@ -24,6 +24,7 @@ router.route('/:id')
         .get(userControllers.getOnlyUser)
         .patch(userControllers.updateUser)
         
-router.route('/forgot-password',userControllers.foregetPassword)   
+router.route('/forgot-password')
+        .post(userControllers.foregetPassword)
         
 module.exports = router;

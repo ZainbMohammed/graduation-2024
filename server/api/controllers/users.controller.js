@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs")
 const httpStatusText = require('../utils/httpStatusText')
 const generateJWT = require('../utils/generateJWT');
 const nodemailer = require('nodemailer');
+const { use } = require('../routers/users.routers');
 
 
 const getAllUsers = async (req,res)=>{
@@ -124,7 +125,7 @@ const foregetPassword = async (req, res) => {
         }
 
         // Generate a reset token
-        const token = crypto.randomBytes(20).toString('hex');
+        const token = await generateJWT({email: user.email, id: user._id});
         
         // Set token and expiration on the user object
         user.resetPasswordToken = token;
@@ -151,11 +152,24 @@ const foregetPassword = async (req, res) => {
                 If you did not request this, please ignore this email and your password will remain unchanged.\n`,
         };
 
-        await transporter.sendMail(mailOptions);
+        // await transporter.sendMail(mailOptions,(error, info) => {
+        //     if (error) {
+        //         console.log('Error:', error);
+        //     } else {
+        //         console.log('Email sent:', info.response);
+        //     }
+        // });
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log('Password reset email sent to:', user.email);
+        } catch (error) {
+            console.error('Error sending password reset email:', error);
+        }
+        
 
         res.status(200).json({ status: 'success', message: 'Password reset email sent' });
     } catch (error) {
-        res.status(500).json({ status: 'error', message: 'Internal server error' });
+        res.status(500).json({ status: 'error', message: `Internal server error ${error}` });
     }
 }
 module.exports = {
