@@ -83,7 +83,7 @@ const login = async (req,res)=>{
         if(matchedPassword){
 
             const token = await generateJWT({email: loginUser.email, id: loginUser._id});
-            return res.status(200).json({status: httpStatusText.SUCCESS, Message: "Login is success",data:{token}});
+            return res.status(200).json({status: httpStatusText.SUCCESS, Message: "Login is success",data:{'token':token , 'id':loginUser._id}});
         }else{
             return res.status(400).json({status: httpStatusText.ERROR, Message: "The password is wrong"});
         }
