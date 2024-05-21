@@ -144,7 +144,7 @@ const foregetPassword = async (req, res) => {
 
         const mailOptions = {
             to: user.email,
-            from: 'passwordreset@demo.com',
+            from: process.env.EMAIL_USER,
             subject: 'Password Reset',
             text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
                 Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n
@@ -160,15 +160,21 @@ const foregetPassword = async (req, res) => {
         //     }
         // });
         try {
+            console.log('========= start send email function =======');
             await transporter.sendMail(mailOptions);
             console.log('Password reset email sent to:', user.email);
+            res.status(200).json({ status: 'success', message: 'Password reset email sent' });
+
         } catch (error) {
             console.error('Error sending password reset email:', error);
+            res.status(500).json({ status: 'error', message: 'Failed to send email' });
+
         }
         
-
-        res.status(200).json({ status: 'success', message: 'Password reset email sent' });
+        // console.log(process.env.EMAIL_PASS);
+        // console.log(process.env.EMAIL_USER);
     } catch (error) {
+        console.error('Error in forgetPassword function:', error);
         res.status(500).json({ status: 'error', message: `Internal server error ${error}` });
     }
 }
