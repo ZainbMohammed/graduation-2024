@@ -64,15 +64,15 @@ const login = async (req,res)=>{
     console.log(req.body);
     console.log('===============')
     const {email,password} = req.body;
-    console.log('Password:', password); // Check password value
+    console.log('Password:', password);
     
     if(!email || !password){
         return res.status(400).json({status: httpStatusText.ERROR, Message: "email and password are both require"});
     }
 
     try{
-        console.log('Request Body:', req.body); // Check if email and password are present in the request body
-        console.log('Password:', password); // Check the value of the password variable
+        console.log('Request Body:', req.body);
+        console.log('Password:', password);
 
         const loginUser = await User.findOne({email:email});
     if(!loginUser){
@@ -152,13 +152,6 @@ const foregetPassword = async (req, res) => {
                 If you did not request this, please ignore this email and your password will remain unchanged.\n`,
         };
 
-        // await transporter.sendMail(mailOptions,(error, info) => {
-        //     if (error) {
-        //         console.log('Error:', error);
-        //     } else {
-        //         console.log('Email sent:', info.response);
-        //     }
-        // });
         try {
             console.log('========= start send email function =======');
             await transporter.sendMail(mailOptions);
@@ -171,8 +164,6 @@ const foregetPassword = async (req, res) => {
 
         }
         
-        // console.log(process.env.EMAIL_PASS);
-        // console.log(process.env.EMAIL_USER);
     } catch (error) {
         console.error('Error in forgetPassword function:', error);
         res.status(500).json({ status: 'error', message: `Internal server error ${error}` });
