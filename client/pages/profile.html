@@ -176,42 +176,41 @@
                     </div>
                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
                       <!-- Profile Edit Form -->
-                      <form>
+                      <form id="profileEditForm">
                         <div class="row mb-3">
                           <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم المستخدم</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="fullName" type="text" class="form-control" id="fullName" value="زينب">
+                            <input name="fullName" type="text" class="form-control" id="f-username">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="email" class="col-md-4 col-lg-3 col-form-label">الايميل</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="email" type="email" class="form-control" id="email" value="zainb@gmail.com">
+                            <input name="email" type="email" class="form-control" id="f-email">
                             </div>
                         </div>
                         <div class="row mb-3">
                           <label for="storeName" class="col-md-4 col-lg-3 col-form-label">اسم المتجر</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="storeName" type="text" class="form-control" id="storeName"
-                              value="فلور ستور">
+                            <input name="storeName" type="text" class="form-control" id="f-storeName">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="storeEmail" class="col-md-4 col-lg-3 col-form-label">ايميل المتجر</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="storeEmail" type="email" class="form-control" id="storeEmail" value="fShop@gmail.com">
+                            <input name="storeEmail" type="email" class="form-control" id="f-storeEmail">
                             </div>
                         </div>
                         <div class="row mb-3">
                           <label for="storePhone" class="col-md-4 col-lg-3 col-form-label">رقم المتجر</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="storePhone" type="text" class="form-control" id="storePhone" value="87654">
+                            <input name="storePhone" type="text" class="form-control" id="f-storePhone">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="Country" class="col-md-4 col-lg-3 col-form-label">الدولة</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="country" type="text" class="form-control" id="Country" value="اليمن">
+                            <input name="country" type="text" class="form-control" id="f-country">
                           </div>
                         </div>
                         <div class="text-center">
@@ -267,11 +266,13 @@
     <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
   <script>
-
+    let userId;
     document.addEventListener('DOMContentLoaded', async() =>{
+      const profileEditForm = document.getElementById('profileEditForm');
+
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const userId = urlParams.get('userId');
+        userId = urlParams.get('userId');
         console.log('id ========> ',userId)
         if (!userId) {
           console.error('User ID not provided');
@@ -294,7 +295,6 @@
                 const user = result.data.user;
                 console.log('user ===>',user);
                 document.getElementById('span-username').textContent = user.userName;
-
                 document.getElementById('username').textContent = user.userName;
                 document.getElementById('email').textContent = user.email;
                 document.getElementById('password').textContent = user.password;
@@ -303,6 +303,15 @@
                 document.getElementById('storeEmail').textContent = user.businessInfo.email;
                 document.getElementById('storePhone').textContent = user.businessInfo.phone;
                 document.getElementById('Country').textContent = user.businessInfo.country;
+
+                /////////////
+                document.getElementById('f-username').value = user.userName || '';
+                document.getElementById('f-email').value = user.email || '';
+                document.getElementById('f-storeName').value = user.businessInfo.name || '';
+                document.getElementById('f-storeEmail').value = user.businessInfo.email || '';
+                document.getElementById('f-storePhone').value = user.businessInfo.phone || '';
+                document.getElementById('f-country').value = user.businessInfo.country || '';
+
             } else {
                 console.error('Error fetching user data:', result.message);
             }
@@ -342,7 +351,44 @@
             console.error('An error occurred. Please try again later.');
         }
     });
-    
+    document.getElementById('profileEditForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(profileEditForm);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            console.log('response =====>',response);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('result =====>',result);
+
+            if (result.status === 'success') {
+                alert('Profile updated successfully');
+                // Optionally, refresh the page or update the UI with the new data
+            } else {
+                console.error('Error:', result.Message);
+                alert('Failed to update profile');
+            }
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            alert('An error occurred while updating the profile');
+        }
+    });
   </script>
 </body>
 </html>
