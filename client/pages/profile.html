@@ -180,38 +180,38 @@
                         <div class="row mb-3">
                           <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم المستخدم</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="fullName" type="text" class="form-control" id="fullName" value="زينب">
+                            <input name="fullName" type="text" class="form-control" id="f-username" value="زينب">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="email" class="col-md-4 col-lg-3 col-form-label">الايميل</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="email" type="email" class="form-control" id="email" value="zainb@gmail.com">
+                            <input name="email" type="email" class="form-control" id="f-email" value="zainb@gmail.com">
                             </div>
                         </div>
                         <div class="row mb-3">
                           <label for="storeName" class="col-md-4 col-lg-3 col-form-label">اسم المتجر</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="storeName" type="text" class="form-control" id="storeName"
+                            <input name="storeName" type="text" class="form-control" id="f-storeName"
                               value="فلور ستور">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="storeEmail" class="col-md-4 col-lg-3 col-form-label">ايميل المتجر</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="storeEmail" type="email" class="form-control" id="storeEmail" value="fShop@gmail.com">
+                            <input name="storeEmail" type="email" class="form-control" id="f-storeEmail" value="fShop@gmail.com">
                             </div>
                         </div>
                         <div class="row mb-3">
                           <label for="storePhone" class="col-md-4 col-lg-3 col-form-label">رقم المتجر</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="storePhone" type="text" class="form-control" id="storePhone" value="87654">
+                            <input name="storePhone" type="text" class="form-control" id="f-storePhone" value="87654">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="Country" class="col-md-4 col-lg-3 col-form-label">الدولة</label>
                           <div class="col-md-8 col-lg-7">
-                            <input name="country" type="text" class="form-control" id="Country" value="اليمن">
+                            <input name="country" type="text" class="form-control" id="f-country" value="اليمن">
                           </div>
                         </div>
                         <div class="text-center">
@@ -303,6 +303,13 @@
                 document.getElementById('storeEmail').textContent = user.businessInfo.email;
                 document.getElementById('storePhone').textContent = user.businessInfo.phone;
                 document.getElementById('Country').textContent = user.businessInfo.country;
+
+                document.getElementById('f-username').value = user.userName || '';
+            document.getElementById('f-email').value = user.email || '';
+            document.getElementById('f-storeName').value = user.businessInfo.name || '';
+            document.getElementById('f-storeEmail').value = user.businessInfo.email || '';
+            document.getElementById('f-storePhone').value = user.businessInfo.phone || '';
+            document.getElementById('f-country').value = user.businessInfo.country || '';
             } else {
                 console.error('Error fetching user data:', result.message);
             }
