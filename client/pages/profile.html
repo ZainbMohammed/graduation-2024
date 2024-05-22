@@ -171,7 +171,7 @@
                       </div>
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">الدولة</div>
-                        <div class="col-lg-9 col-md-8" id="Country">اليمن</div>
+                        <div class="col-lg-9 col-md-8" id="country">اليمن</div>
                       </div>
                     </div>
                     <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -266,11 +266,83 @@
     <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
   <script>
+     function displayData(user){
+      document.getElementById('span-username').textContent = user.userName;
+                document.getElementById('username').textContent = user.userName;
+                document.getElementById('email').textContent = user.email;
+                document.getElementById('password').textContent = user.password;
+                // Update more fields as necessary
+                document.getElementById('storeName').textContent = user.businessInfo.name;
+                document.getElementById('storeEmail').textContent = user.businessInfo.email;
+                document.getElementById('storePhone').textContent = user.businessInfo.phone;
+                document.getElementById('Country').textContent = user.businessInfo.country;
+
+                /////////////
+                document.getElementById('f-username').value = user.userName || '';
+                document.getElementById('f-email').value = user.email || '';
+                document.getElementById('f-storeName').value = user.businessInfo.name || '';
+                document.getElementById('f-storeEmail').value = user.businessInfo.email || '';
+                document.getElementById('f-storePhone').value = user.businessInfo.phone || '';
+                document.getElementById('f-country').value = user.businessInfo.country || '';
+    }
+      
     let userId;
     document.addEventListener('DOMContentLoaded', async() =>{
       const profileEditForm = document.getElementById('profileEditForm');
 
-        const queryString = window.location.search;
+      profileEditForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(profileEditForm);
+        const data = {
+      userName: formData.get('username'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+      businessInfo: {
+        name: formData.get('storeName'),
+        email: formData.get('storeEmail'),
+        phone: formData.get('storePhone'),
+        country: formData.get('country')
+      }
+    };
+        // formData.forEach((value, key) => {
+        //     data[key] = value;
+        // });
+        console.log("data =====>",data);
+        try {
+            const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            console.log('response =====>',response);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('result =====>',result);
+
+            if (result.status === 'success') {
+                alert('Profile updated successfully');
+                // window.location.reload();
+                displayData(user);
+
+                // Optionally, refresh the page or update the UI with the new data
+            } else {
+                console.error('Error:', result.Message);
+                alert('Failed to update profile');
+            }
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            alert('An error occurred while updating the profile');
+        }
+    });
+      
+     const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         userId = urlParams.get('userId');
         console.log('id ========> ',userId)
@@ -294,23 +366,8 @@
             if (result.status === 'success') {
                 const user = result.data.user;
                 console.log('user ===>',user);
-                document.getElementById('span-username').textContent = user.userName;
-                document.getElementById('username').textContent = user.userName;
-                document.getElementById('email').textContent = user.email;
-                document.getElementById('password').textContent = user.password;
-                // Update more fields as necessary
-                document.getElementById('storeName').textContent = user.businessInfo.name;
-                document.getElementById('storeEmail').textContent = user.businessInfo.email;
-                document.getElementById('storePhone').textContent = user.businessInfo.phone;
-                document.getElementById('Country').textContent = user.businessInfo.country;
-
-                /////////////
-                document.getElementById('f-username').value = user.userName || '';
-                document.getElementById('f-email').value = user.email || '';
-                document.getElementById('f-storeName').value = user.businessInfo.name || '';
-                document.getElementById('f-storeEmail').value = user.businessInfo.email || '';
-                document.getElementById('f-storePhone').value = user.businessInfo.phone || '';
-                document.getElementById('f-country').value = user.businessInfo.country || '';
+                displayData(user);
+                
 
             } else {
                 console.error('Error fetching user data:', result.message);
@@ -351,44 +408,7 @@
             console.error('An error occurred. Please try again later.');
         }
     });
-    document.getElementById('profileEditForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(profileEditForm);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-
-        try {
-            const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            console.log('response =====>',response);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log('result =====>',result);
-
-            if (result.status === 'success') {
-                alert('Profile updated successfully');
-                // Optionally, refresh the page or update the UI with the new data
-            } else {
-                console.error('Error:', result.Message);
-                alert('Failed to update profile');
-            }
-        } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('An error occurred while updating the profile');
-        }
-    });
+   
   </script>
 </body>
 </html>
