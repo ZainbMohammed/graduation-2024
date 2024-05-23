@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -9,7 +10,7 @@
 
   <!-- Favicons -->
   <link href="../assets/img/Vector.png" rel="icon">
-  
+
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Roboto:ital,wght@0,100;0,400;1,300&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
@@ -26,8 +27,9 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/profileStyle.css" rel="stylesheet">
 </head>
+
 <body>
-    <!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -77,11 +79,11 @@
             </li>
             <hr class="dropdown-divider">
             <li>
-                <a id="logoutButton" class="dropdown-item d-flex align-items-center" href="./login.html">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>تسجيل خروج</span>
-                </a>
-              </li>
+              <a id="logoutButton" class="dropdown-item d-flex align-items-center" href="./login.html">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>تسجيل خروج</span>
+              </a>
+            </li>
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
       </ul>
@@ -123,238 +125,294 @@
     </ul>
   </aside><!-- End Sidebar-->
   <main id="main" class="main">
-     <main id="main" class="main">
-        <section class="section profile">
-            <div class="row">
-              <div class="card">
-                <div class="card-body pt-2">
-                  <!-- Bordered Tabs -->
-                  <ul class="nav nav-tabs nav-tabs-bordered">
-                    <li class="nav-item">
-                      <button class="nav-link active" data-bs-toggle="tab"
-                        data-bs-target="#profile-overview">معلومات عامه</button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل البروفايل</button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغير الباسورد</button>
-                    </li>
-                  </ul>
-                  <div class="tab-content pt-2">
-                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                      <h5 class="card-title">المعلومات الشخصيه</h5>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">اسم المستخدم</div>
-                        <div class="col-lg-9 col-md-8" id="username">زينب</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">الايميل</div>
-                        <div class="col-lg-9 col-md-8" id="email">zainb@gmail.com</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">الباسورد</div>
-                        <div class="col-lg-9 col-md-8" id="password">1234</div>
-                      </div>
-                      <h5 class="card-title">معلومات البزنس</h5>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">اسم المتجر</div>
-                        <div class="col-lg-9 col-md-8" id="storeName">فلور ستور</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">ايميل المتجر</div>
-                        <div class="col-lg-9 col-md-8" id="storeEmail">fShop@gmail.com</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">رقم المتجر</div>
-                        <div class="col-lg-9 col-md-8" id="storePhone">87654</div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">الدولة</div>
-                        <div class="col-lg-9 col-md-8" id="Country">اليمن</div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                      <!-- Profile Edit Form -->
-                      <form>
-                        <div class="row mb-3">
-                          <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم المستخدم</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="fullName" type="text" class="form-control" id="f-username" value="زينب">
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="email" class="col-md-4 col-lg-3 col-form-label">الايميل</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="email" type="email" class="form-control" id="f-email" value="zainb@gmail.com">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="storeName" class="col-md-4 col-lg-3 col-form-label">اسم المتجر</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="storeName" type="text" class="form-control" id="f-storeName"
-                              value="فلور ستور">
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="storeEmail" class="col-md-4 col-lg-3 col-form-label">ايميل المتجر</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="storeEmail" type="email" class="form-control" id="f-storeEmail" value="fShop@gmail.com">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="storePhone" class="col-md-4 col-lg-3 col-form-label">رقم المتجر</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="storePhone" type="text" class="form-control" id="f-storePhone" value="87654">
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="Country" class="col-md-4 col-lg-3 col-form-label">الدولة</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="country" type="text" class="form-control" id="f-country" value="اليمن">
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button type="submit" class="btn save">حفظ</button>
-                        </div>
-                      </form><!-- End Profile Edit Form -->
-                    </div>
-                    <div class="tab-pane fade pt-3" id="profile-change-password">
-                      <!-- Change Password Form -->
-                      <form>
-                        <div class="row mb-3">
-                          <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الحالية</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="password" type="password" class="form-control" id="currentPassword">
-                          </div>
-                        </div>
-        
-                        <div class="row mb-3">
-                          <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="newpassword" type="password" class="form-control" id="newPassword">
-                          </div>
-                        </div>
-        
-                        <div class="row mb-3">
-                          <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة المرور</label>
-                          <div class="col-md-8 col-lg-7">
-                            <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button type="submit" class="btn save">حفظ</button>
-                        </div>
-                      </form><!-- End Change Password Form -->
-                    </div>
-                  </div><!-- End Bordered Tabs -->
+    <main id="main" class="main">
+      <section class="section profile">
+        <div class="row">
+          <div class="card">
+            <div class="card-body pt-2">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">معلومات
+                    عامه</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">تعديل البروفايل</button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">تغير
+                    الباسورد</button>
+                </li>
+              </ul>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  <h5 class="card-title">المعلومات الشخصيه</h5>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">اسم المستخدم</div>
+                    <div class="col-lg-9 col-md-8" id="username">زينب</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">الايميل</div>
+                    <div class="col-lg-9 col-md-8" id="email">zainb@gmail.com</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">الباسورد</div>
+                    <div class="col-lg-9 col-md-8" id="password">1234</div>
+                  </div>
+                  <h5 class="card-title">معلومات البزنس</h5>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">اسم المتجر</div>
+                    <div class="col-lg-9 col-md-8" id="storeName">فلور ستور</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">ايميل المتجر</div>
+                    <div class="col-lg-9 col-md-8" id="storeEmail">fShop@gmail.com</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">رقم المتجر</div>
+                    <div class="col-lg-9 col-md-8" id="storePhone">87654</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">الدولة</div>
+                    <div class="col-lg-9 col-md-8" id="Country">اليمن</div>
+                  </div>
                 </div>
-              </div>
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                  <!-- Profile Edit Form -->
+                  <form>
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">اسم المستخدم</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="fullName" type="text" class="form-control" id="f-username">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="email" class="col-md-4 col-lg-3 col-form-label">الايميل</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="email" type="email" class="form-control" id="f-email">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="storeName" class="col-md-4 col-lg-3 col-form-label">اسم المتجر</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="storeName" type="text" class="form-control" id="f-storeName">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="storeEmail" class="col-md-4 col-lg-3 col-form-label">ايميل المتجر</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="storeEmail" type="email" class="form-control" id="f-storeEmail">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="storePhone" class="col-md-4 col-lg-3 col-form-label">رقم المتجر</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="storePhone" type="text" class="form-control" id="f-storePhone">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">الدولة</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="country" type="text" class="form-control" id="f-country">
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn save" id="save-button">حفظ</button>
+                    </div>
+                  </form><!-- End Profile Edit Form -->
+                </div>
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form>
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الحالية</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="password" type="password" class="form-control" id="currentPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">كلمة المرور الجديدة</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">تأكيد كلمة المرور</label>
+                      <div class="col-md-8 col-lg-7">
+                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn save">حفظ</button>
+                    </div>
+                  </form><!-- End Change Password Form -->
+                </div>
+              </div><!-- End Bordered Tabs -->
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
     </main>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+        class="bi bi-arrow-up-short"></i></a>
     <!-- Vendor JS Files -->
-  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
-  <script>
-
-    document.addEventListener('DOMContentLoaded', async() =>{
+    <script src="../assets/js/main.js"></script>
+    <script>
+      let userId;
+      document.addEventListener('DOMContentLoaded', async () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const userId = urlParams.get('userId');
-        console.log('id ========> ',userId)
+        userId = urlParams.get('userId');
+        console.log('id ========> ', userId)
         if (!userId) {
           console.error('User ID not provided');
           return;
-        } 
-        try {
-            const response = await fetch(`http://localhost:3000/api/users/${userId}`,{
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-                    'Content-Type': 'application/json'
-                }
-            });
-            if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
         }
-            const result = await response.json();
-            console.log('response==>',result);
-            if (result.status === 'success') {
-                const user = result.data.user;
-                console.log('user ===>',user);
-                document.getElementById('span-username').textContent = user.userName;
+        try {
+          const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
+          console.log('response==>', result);
+          if (result.status === 'success') {
+            const user = result.data.user;
+            console.log('user ===>', user);
+            document.getElementById('span-username').textContent = user.userName;
 
-                document.getElementById('username').textContent = user.userName;
-                document.getElementById('email').textContent = user.email;
-                document.getElementById('password').textContent = user.password;
-                // Update more fields as necessary
-                document.getElementById('storeName').textContent = user.businessInfo.name;
-                document.getElementById('storeEmail').textContent = user.businessInfo.email;
-                document.getElementById('storePhone').textContent = user.businessInfo.phone;
-                document.getElementById('Country').textContent = user.businessInfo.country;
+            document.getElementById('username').textContent = user.userName;
+            document.getElementById('email').textContent = user.email;
+            document.getElementById('password').textContent = user.password;
+            // Update more fields as necessary
+            document.getElementById('storeName').textContent = user.businessInfo.name;
+            document.getElementById('storeEmail').textContent = user.businessInfo.email;
+            document.getElementById('storePhone').textContent = user.businessInfo.phone;
+            document.getElementById('Country').textContent = user.businessInfo.country;
 
-                document.getElementById('f-username').value = user.userName || '';
+            document.getElementById('f-username').value = user.userName || '';
             document.getElementById('f-email').value = user.email || '';
             document.getElementById('f-storeName').value = user.businessInfo.name || '';
             document.getElementById('f-storeEmail').value = user.businessInfo.email || '';
             document.getElementById('f-storePhone').value = user.businessInfo.phone || '';
             document.getElementById('f-country').value = user.businessInfo.country || '';
-            } else {
-                console.error('Error fetching user data:', result.message);
-            }
+          } else {
+            console.error('Error fetching user data:', result.message);
+          }
         } catch (error) {
-            console.error('Error fetching user data:', error);
+          console.error('Error fetching user data:', error);
         }
-    });
 
-    // async function fetchUserData(userId) {
-        
-    // }
+  
+      });
 
+      // async function fetchUserData(userId) {
 
-    document.getElementById('logoutButton').addEventListener('click', async function() {
-      console.log(localStorage.getItem('authToken'));
-        try {
-            // Assuming your backend has a logout endpoint
-            const response = await fetch('http://localhost:3000/api/users/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                }
+      // }
+      // const saveButton = document.getElementById('save-button');
+
+      document.getElementById('save-button').addEventListener('click', async () => {
+          // const userId = new URLSearchParams(window.location.search).get('userId');
+
+          event.preventDefault();
+          const updatedData = {
+            userName: document.getElementById('f-username').value,
+            email: document.getElementById('f-email').value,
+            password: document.getElementById('f-password').value, // Ensure you have an input for password if needed
+            businessInfo: {
+              name: document.getElementById('f-storeName').value,
+              email: document.getElementById('f-storeEmail').value,
+              industry: document.getElementById('f-industry').value, // Ensure you have an input for industry
+              phone: document.getElementById('f-storePhone').value,
+              country: document.getElementById('f-country').value
+            }
+          };
+          console.log(updatedData);
+          try {
+            const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+              method: 'PATCH',
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(updatedData)
             });
-
-            if (response.ok) {
-                // Clear authentication data
-                localStorage.removeItem('authToken');
-                localStorage.removeItem('userId');
-
-                // Display success message
-                console.log('Logout successful! Redirecting to login page...');
-
-                // Redirect to login page after a short delay
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 10000);
-            } else {
-                console.error('Logout failed. Please try again.');
+            console.log('response==> ',response);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
             }
+
+            const result = await response.json();
+            console.log('result==> ',response);
+
+            if (result.status === 'success') {
+              alert('Profile updated successfully!');
+              // Update the displayed data if needed
+              document.getElementById('username').textContent = updatedData.userName;
+              document.getElementById('email').textContent = updatedData.email;
+              document.getElementById('storeName').textContent = updatedData.businessInfo.name;
+              document.getElementById('storeEmail').textContent = updatedData.businessInfo.email;
+              document.getElementById('storePhone').textContent = updatedData.businessInfo.phone;
+              document.getElementById('Country').textContent = updatedData.businessInfo.country;
+            } else {
+              console.error('Error updating user data:', result.message);
+              alert('Failed to update profile. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error updating user data:', error);
+            alert('An error occurred. Please try again.');
+          }
+        });
+
+      document.getElementById('logoutButton').addEventListener('click', async function () {
+        console.log(localStorage.getItem('authToken'));
+        try {
+          // Assuming your backend has a logout endpoint
+          const response = await fetch('http://localhost:3000/api/users/logout', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            }
+          });
+
+          if (response.ok) {
+            // Clear authentication data
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userId');
+
+            // Display success message
+            console.log('Logout successful! Redirecting to login page...');
+
+            // Redirect to login page after a short delay
+            setTimeout(() => {
+              window.location.href = 'login.html';
+            }, 10000);
+          } else {
+            console.error('Logout failed. Please try again.');
+          }
         } catch (error) {
-            console.error('An error occurred. Please try again later.');
+          console.error('An error occurred. Please try again later.');
         }
-    });
-    
-  </script>
+      });
+
+    </script>
 </body>
+
 </html>
